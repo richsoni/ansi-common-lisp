@@ -1,0 +1,5 @@
+(setf res (list (cons 'a 4) (cons 'c 4) (cons 'b 3) (cons 'd 1)))
+(setf lst (list (cons 'a 4) (cons 'b 3) (cons 'c 4) (cons 'd 1)))
+(setf sums '(4 3 1))
+(setf elems '(a b d))
+(setf letters '(a b a d a c d c a))
