@@ -33,3 +33,5 @@
              b  c
 
 2. "union.lisp"
+3. "./occurances/occurrences.lisp"
+4. Because (members' default truth test is #eql
