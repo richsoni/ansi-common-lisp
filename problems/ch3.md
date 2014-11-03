@@ -13,6 +13,7 @@
                     c     [|][nil]
                            v
                            d
+
   c. [|][nil]
       v
      [|][-]>[|][nil]
@@ -35,3 +36,5 @@
 2. "union.lisp"
 3. "./occurances/occurrences.lisp"
 4. Because (members' default truth test is #eql
+5. "./posPlus"
+6. "./gov.lisp"
