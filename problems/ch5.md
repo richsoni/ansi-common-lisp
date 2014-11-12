@@ -1,0 +1,7 @@
+1.  "./ch5/let.lisp"
+2.  "./ch5/mystery.lisp"
+3.  "./ch5/square-arg.lisp"
+4.  "./ch5/num-month.lisp"
+5.  "./ch5/precedes.lisp"
+6.  "./ch5/intersperse.lisp"
+7.  "./ch5/diff-one.lisp"
