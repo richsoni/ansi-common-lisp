@@ -1,0 +1,3 @@
+#! /usr/bin/env ruby
+ch = ARGV[0] || `ls chapters | tail -n1`.to_i
+exec "vim chapters/#{ch}/README.md"
