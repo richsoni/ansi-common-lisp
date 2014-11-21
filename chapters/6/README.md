@@ -24,7 +24,6 @@ Use ```setf``` and ```symbol-function``` to define a function.
 
 ## Defining Setter functions
 
-Given the following declarations
 
 ```lisp
 > (setf fixture '(1 2 3))
@@ -96,3 +95,114 @@ Do is like recursion... here are 2 equal statements
              (rec (b x) (d y)))))))
 
 ```
+
+## Parameter List
+
+### &rest (splatting)
+```lisp
+(defun our-funcall (fn &rest args)
+  (apply fn args))
+```
+
+### &optional (defaulting)
+
+```lisp
+> (defun philosph (thing &optional property)
+  (list thing 'is property))
+> (pholosph 'death)
+(DEATH IS NIL)
+> (defun philosph (thing &optional (property 'fun))
+     (list thing 'is property))
+> (philosph 'death)
+> (DEATH IS FUN)
+```
+
+### Keywords
+
+```lisp
+(defun keylist (a &key x y z)
+  (list a x y z))
+> keylist 1 :y 2)
+(1 nil 2 nil)
+```
+
+### Apply, and Returning Fns
+
+Return  a function by making a ref to it
+
+```lisp
+(defun my-append ()
+  #'append
+)
+```
+
+```lisp
+> (apply my-append '(1 2 3))
+```
+
+of course returning a lambda is interesting
+
+```
+>(setf fn (let ((i 3))
+  #'(lambda (x) (+ x i))))
+>(funcall fn 2)
+```
+
+##??? What is the difference between apply and funcall???
+
+## Closure
+
+1. **Free Variable**: var referred to outside of a function
+2. **Closure**: function that referres to a free variable
+
+Here is a sophisticated of closure using shared variables:
+
+```lisp
+  (let ((counter 0))
+    (defun reset ()
+      (setf counter 0))
+    (defun stamp ()
+      (setf counter (+ counter 1))))
+```
+
+# Scoping
+
+## Lexical Scoping
+
+```lisp
+> (let ((x 10))
+   (defun foo() x))
+> (let ((x 20 )) (foo))
+```
+
+## Dynamic Scoping
+Special is a LISP declaration that tells the compiler how to scope its argument name
+(setf on toplevel is implicitly special)
+```lisp
+> (let ((x 10))
+    (defun foo()
+      (declare (special x)) x))
+> (let ((x 20))
+    (declare (special x))
+    (foo))
+20
+```
+
+# Compiling
+
+Compile non scoped functions with `(compile 'fn)`
+
+Compile a whole file with *compile-file*.
+
+Test compilation with *compile-function-p*
+
+# Summary
+1. A named function is a function stored as the symbol-function of a symbol. The def un macro hides such details. It also allows you to definedocumentationstrings,andspecifyhowsetf shouldtreatcalls.
+2. Itispossibletodefinelocalfunctions,similarinspirittolocalvariables.
+3. Functions can have optional, rest, and keyword parameters.
+4. Utilities are additions to Lisp. They are an example of bottom-up programming on a small scale.
+5. Lexical variables persist as long as something refers to them. Closures are functions that refer to free variables. You can write functions that return closures.
+6. Dylan provides functions for building functions. Using closures, it's easy to implement them in Common Lisp.
+7. Special variables have dynamic scope.
+8. Lisp functions can be compiled individually, or (more usually) by the file.
+9. A recursive algorithm solves a problem by dividing it into a finite number of similar, but smaller, problems.
