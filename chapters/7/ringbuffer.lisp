@@ -1,5 +1,5 @@
 (defstruct buf
-  vec (start -1) (used -1) (end -1))
+  vec (start -1) (used -1) (new -1) (end -1))
 
 (defun bref (buf n)
   (svref (buf-vec buf)
