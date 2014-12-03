@@ -1,0 +1,2 @@
+(load "./my-package.lisp")
+
