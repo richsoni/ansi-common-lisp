@@ -32,11 +32,17 @@
 
 
 ;3
-  ;tbd
+  ;tk, tbd
+  ;Still Not 100% on this one
 
 ;4
    ; ring-package.lisp
    ; file-package.lisp
 
-;5
-    
+;5 
+
+; I dont know what this means
+; tk, tbd
+
+;
+    ; my-henley.lisp
