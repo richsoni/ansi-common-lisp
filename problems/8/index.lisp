@@ -41,8 +41,11 @@
 
 ;5 
 
-; I dont know what this means
-; tk, tbd
+    (load "my-henley.lisp")
+    (setf _path "")
+    (test-text _path "foo bar baz")
+    (test-text _path "eua bar baz")
 
 ;
     ; my-henley.lisp
+    (generate-sentence "foobar")

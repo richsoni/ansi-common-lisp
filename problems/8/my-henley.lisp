@@ -67,4 +67,28 @@
   (append (reverse (sentence-fragment word *prev-words*)) (cdr (sentence-fragment word *next-words*)))
 )
 
-(read-text "~/quicklinks/journal/output.txt")
+(let ((curr nil))
+  (defun henleyp (next)
+    (setf failed nil)
+    (if curr
+      (progn
+        (setf wds (assoc next (gethash curr *next-words*)))
+        (setf failed (not wds)))
+      (progn
+      (setf failed (not (gethash next *next-words*)))))
+    (setf curr next)
+    (not failed))
+
+  (defun test-text (path quote)
+    (read-text path)
+    (setf pos 0)
+    (setf failed nil)
+    (do () ((or (>= pos (length quote)) (eql failed t)) 'done)
+      (multiple-value-bind
+        (word _pos) (read-from-string quote t nil :start pos)
+        (setf pos _pos)
+        (unless (henleyp (intern (string-downcase word)))
+          (setf failed t))
+      ))
+    (setf curr nil)
+    (not failed)))

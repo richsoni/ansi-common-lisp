@@ -43,8 +43,9 @@
 
 (defun random-next (prev)
   (let* ((choices (gethash prev *words*))
-         (i (random (ruduce #'+ choices
+         (i (random (reduce #'+ choices
                             :key #'cdr))))
     (dolist (pair choices)
       (if (minusp (decf i (cdr pair)))
           (return (car pair))))))
+
