@@ -32,8 +32,15 @@
 
 
 ;3
-  ;tk, tbd
-  ;Still Not 100% on this one
+  ;found answer here
+  ;http://www.cs.northwestern.edu/academics/courses/325/readings/packages.html
+  ;basically it boils down to this:
+  ;
+  ;when the parser sees a symbol it interns it
+  ;so defining a package from cl-user will intern the symbol in cl-user
+  ;
+  ;this can cause naming conflicts because the symbol is included in too many places
+  ;strings dont get evaled at read time, so they are safe
 
 ;4
    ; ring-package.lisp
